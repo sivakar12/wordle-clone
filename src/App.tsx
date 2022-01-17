@@ -3,7 +3,8 @@ import _ from 'lodash'
 import Keyboard from './Keyboard';
 import './App.css'
 import { AttemptedRow, CurrentEntry, EmptyRow } from './DisplayRows';
-import words from './words';
+import allWords from './words';
+import easyWords from './easy-words';
 
 type Attempts = string[];
 
@@ -16,14 +17,14 @@ const MAX_ATTEMPTS = 6;
 // ]
 
 function getRandomWord() {
-  const index = Math.floor(Math.random() * words.length);
-  return words[index]
+  const index = Math.floor(Math.random() * easyWords.length);
+  return easyWords[index]
 }
 
 function validWord(wordToCheck: string) {
   // TODO: Must find a better tree based search 
   // when there are more words
-  return words.some(w => w === wordToCheck)
+  return allWords.some(w => w === wordToCheck)
 }
 
 function App() {
