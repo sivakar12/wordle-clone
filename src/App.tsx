@@ -1,4 +1,5 @@
 import React from 'react';
+import Keyboard from './Keyboard';
 
 type LetterStatus = 
   'guessedWrongPosition' | 'guessedRightPosition' | 'guessedWrong' | 'notGuessed';
@@ -44,7 +45,7 @@ function displayWord(word: string, letterStatus: LetterStatusMap) {
             </span>
           );
         }) 
-      } 
+      }
     </div>
   );
 }
@@ -60,7 +61,13 @@ function App() {
       <div>WORDLE</div>
       <div>
         {attempts.map(attempt => displayWord(attempt, initialLetterStatus))}
+        {displayWord(currentEntry, initialLetterStatus)}
       </div>
+      <Keyboard
+        onLetterInput={letter => {setCurrentEntry(currentEntry + letter);}}
+        onBackspace={() => {setCurrentEntry(currentEntry.slice(0, -1));}}
+        onEnter={() => {attempts.push(currentEntry); setCurrentEntry('');}}
+      />
     </div>
   );
 }
