@@ -96,7 +96,8 @@ hr {
 }
 
 .game-over {
-  font-size: 1.6em;
+  font-size: 1.8em;
+  text-align: center;
 }
 
 .game-over-restart {
