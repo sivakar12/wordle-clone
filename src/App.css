@@ -12,6 +12,7 @@
 body {
   /* background-color: var(--salmon); */
   background-color: var(--french-raspberry);
+  user-select: none;
 }
 hr {
   width: 100%;
