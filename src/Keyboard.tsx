@@ -3,7 +3,8 @@ import React from 'react';
 type KeyboardProps = {
     onLetterInput: (letter: string) => void,
     onBackspace: () => void,
-    onEnter: () => void
+    onEnter: () => void,
+    colorForKey: {[key: string]: string},
 }
 
 const rows = [
@@ -30,6 +31,7 @@ export default function Keyboard(props: KeyboardProps) {
                         <div
                             className="keyboard-button"
                             key={letterIndex}
+                            style={{backgroundColor: props.colorForKey[text]}}
                             onClick={() => handleButton(text)}
                         >
                             {text}

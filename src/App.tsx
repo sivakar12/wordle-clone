@@ -1,61 +1,62 @@
 import React from 'react';
 import Keyboard from './Keyboard';
 import './App.css'
-type LetterStatus = 
-  'guessedWrongPosition' | 'guessedRightPosition' | 'guessedWrong' | 'notGuessed';
 
-function colorForLetter(letterStatus: LetterStatus) {
-  switch (letterStatus) {
-    case 'guessedWrongPosition':
-      return 'yellow';
-    case 'guessedRightPosition':
-      return 'green';
-    case 'guessedWrong':
-      return 'grey';
-    case 'notGuessed':
-      return '';
-  }
-}
-type LetterStatusMap = {
-  [key: string]: LetterStatus;
-}
-
-const initialLetterStatus: LetterStatusMap = 
-  'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-    .split('')
-    .reduce((acc, letter) => (
-      {letter: 'notGuessed', ...acc}), 
-      {}
-    );
 
 type Attempts = string[];
 
 const WORD_LENGTH = 5;
 const MAX_ATTEMPTS = 6;
 
-function displayWord(word: string, letterStatus: LetterStatusMap) {
-  return (
-    <div className='letter-grid-row'>
-      {
-        word.split('').map(letter => {
-          const color = colorForLetter(letterStatus[letter]);
-          return (
-            <div className='letter-grid-item' style={{color: color}}>
-              {letter}
-            </div>
-          );
-        }) 
-      }
-    </div>
-  );
-}
 
 function App() {
-
+  
   const [word, setWord] = React.useState('APPLE');
   const [currentEntry, setCurrentEntry] = React.useState('');
   const [attempts, setAttempts] = React.useState<Attempts>(['TOTAL', 'WATER', 'INDIA']);
   const [gameOver, setGameOver] = React.useState(false);
+
+  function colorForLetter(letter: string, index: number) {
+    if (word[index] === letter) {
+      return 'green';
+    } else if (word.indexOf(letter) > -1) {
+        return 'yellow';
+    } else {
+      return ''
+    }
+  }
+
+  function getColorsForKeyboard(): { [key: string]: string } {
+    let colorForLetter: { [key: string]: string}  = {};
+    attempts.forEach(attempt => {
+      attempt.split('').forEach((letter, index) => {
+        if (word.charAt(index) === letter) {
+          colorForLetter[letter] = 'green';
+        } else if (word.indexOf(letter) > -1) {
+          colorForLetter[letter] = 'yellow';
+        } else {
+          colorForLetter[letter] = 'grey';
+        }
+      })
+    })
+    return colorForLetter;
+  }
+  function displayWord(word: string, showColors: boolean) {
+    return (
+      <div className='letter-grid-row'>
+        {
+          word.split('').map((letter, index) => {
+            const color = showColors ? colorForLetter(letter, index) : '';
+            return (
+              <div className='letter-grid-item' style={{backgroundColor: color}}>
+                {letter}
+              </div>
+            );
+          }) 
+        }
+      </div>
+    );
+  }
 
   const handleLetterInput = (letter: string) => {
     if (currentEntry.length === WORD_LENGTH) {
@@ -85,13 +86,14 @@ function App() {
     <div className='main-layout'>
       <div className='title'>WORDLE</div>
       <div className='letter-grid'>
-        {attempts.map(attempt => displayWord(attempt, initialLetterStatus))}
-        {displayWord(currentEntry, initialLetterStatus)}
+        {attempts.map(attempt => displayWord(attempt, true))}
+        {displayWord(currentEntry, false)}
       </div>
       <Keyboard
         onLetterInput={handleLetterInput}
         onBackspace={handleBackspace}
         onEnter={handleSubmitWord}
+        colorForKey={getColorsForKeyboard()}
       />
     </div>
   );
