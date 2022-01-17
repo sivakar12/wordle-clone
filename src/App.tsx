@@ -72,7 +72,7 @@ function App() {
     }
     setAttempts([...attempts, currentEntry]);
     setCurrentEntry('')
-    if (attempts.length === MAX_ATTEMPTS - 1) {
+    if (currentEntry === word || attempts.length === MAX_ATTEMPTS - 1) {
       setGameOver(true);
     }
   }
