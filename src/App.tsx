@@ -88,7 +88,7 @@ function App() {
       <div className="game-over">
         {isWon ? <p>You won🎉</p> : <p>Game over</p>}
         {!isWon && <p>The word was {word}</p>}
-        <a onClick={handleRestart}>Play Again</a>
+        <span className="game-over-restart" onClick={handleRestart}>Play Again</span>
       </div>
     )
   }

@@ -96,3 +96,7 @@ hr {
   margin: 3px;
   font-size: 1.4em;
 }
+
+.game-over-restart {
+  text-decoration: underline;
+}
