@@ -107,7 +107,7 @@ function App() {
       <hr/>
       <div className='letter-grid'>
         {attempts.map(word => <AttemptedRow word={word} colorForLetter={colorForLetter} />)}
-        { !gameOver && <CurrentEntry word={currentEntry}/> }
+        { (attempts.length < MAX_ATTEMPTS) && <CurrentEntry word={currentEntry}/> }
         { _.range(0, MAX_ATTEMPTS - attempts.length - 1, 1).map(() => <EmptyRow />)}
       </div>
       <hr/>
