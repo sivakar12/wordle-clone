@@ -30,7 +30,7 @@ const initialLetterStatus: LetterStatusMap =
 
 type Attempts = string[];
 
-const WORD_LENGT = 5;
+const WORD_LENGTH = 5;
 const MAX_ATTEMPTS = 6;
 
 function displayWord(word: string, letterStatus: LetterStatusMap) {
@@ -55,6 +55,31 @@ function App() {
   const [word, setWord] = React.useState('APPLE');
   const [currentEntry, setCurrentEntry] = React.useState('');
   const [attempts, setAttempts] = React.useState<Attempts>(['TOTAL', 'WATER', 'INDIA']);
+  const [gameOver, setGameOver] = React.useState(false);
+
+  const handleLetterInput = (letter: string) => {
+    if (currentEntry.length === WORD_LENGTH) {
+      return;
+    }
+    setCurrentEntry(currentEntry + letter);
+  }
+
+  const handleBackspace = () => {
+    if (currentEntry.length === 0) {
+      return;
+    }
+    setCurrentEntry(currentEntry.slice(0, -1));
+  }
+  const handleSubmitWord = () => {
+    if (currentEntry.length !== WORD_LENGTH) {
+      return;
+    }
+    setAttempts([...attempts, currentEntry]);
+    setCurrentEntry('')
+    if (attempts.length === MAX_ATTEMPTS) {
+      setGameOver(true);
+    }
+  }
 
   return (
     <div className='main-layout'>
@@ -64,9 +89,9 @@ function App() {
         {displayWord(currentEntry, initialLetterStatus)}
       </div>
       <Keyboard
-        onLetterInput={letter => {setCurrentEntry(currentEntry + letter);}}
-        onBackspace={() => {setCurrentEntry(currentEntry.slice(0, -1));}}
-        onEnter={() => {setAttempts([...attempts, currentEntry]); setCurrentEntry('');}}
+        onLetterInput={handleLetterInput}
+        onBackspace={handleBackspace}
+        onEnter={handleSubmitWord}
       />
     </div>
   );
