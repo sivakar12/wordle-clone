@@ -78,10 +78,12 @@ function App() {
     }
     if (validWord(currentEntry)) {
       setAttempts([...attempts, currentEntry]);
-    }
-    setCurrentEntry('')
-    if (currentEntry === word || attempts.length === MAX_ATTEMPTS - 1) {
-      setGameOver(true);
+      setCurrentEntry('')
+      if (currentEntry === word || attempts.length === MAX_ATTEMPTS - 1) {
+        setGameOver(true);
+      }
+    } else {
+      setCurrentEntry('');
     }
   }
 
