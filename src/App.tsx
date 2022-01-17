@@ -10,12 +10,21 @@ type Attempts = string[];
 export const WORD_LENGTH = 5;
 const MAX_ATTEMPTS = 6;
 
+const words = [
+  'APPLE', 'MANGO', 'WATER', 'LIVER', 'RIVER',
+  'DRONE', 'KITES', 'ROUND', 'WOMAN'
+]
+
+function getRandomWord() {
+  const index = Math.floor(Math.random() * words.length);
+  return words[index]
+}
 
 function App() {
   
-  const [word, setWord] = React.useState('APPLE');
+  const [word, setWord] = React.useState(getRandomWord());
   const [currentEntry, setCurrentEntry] = React.useState('');
-  const [attempts, setAttempts] = React.useState<Attempts>(['TOTAL', 'WATER', 'INDIA']);
+  const [attempts, setAttempts] = React.useState<Attempts>([]);
   const [gameOver, setGameOver] = React.useState(false);
 
   function colorForLetter(letter: string, index: number) {
@@ -63,9 +72,25 @@ function App() {
     }
     setAttempts([...attempts, currentEntry]);
     setCurrentEntry('')
-    if (attempts.length === MAX_ATTEMPTS) {
+    if (attempts.length === MAX_ATTEMPTS - 1) {
       setGameOver(true);
     }
+  }
+
+  const GameOver = () => {
+    const isWon = attempts[attempts.length - 1] === word;
+    const handleRestart = () => {
+      setWord(getRandomWord());
+      setAttempts([]);
+      setGameOver(false);
+    }
+    return (
+      <div className="game-over">
+        {isWon ? <p>You won🎉</p> : <p>Game over</p>}
+        {!isWon && <p>The word was {word}</p>}
+        <a onClick={handleRestart}>Play Again</a>
+      </div>
+    )
   }
 
   return (
@@ -74,16 +99,19 @@ function App() {
       <hr/>
       <div className='letter-grid'>
         {attempts.map(word => <AttemptedRow word={word} colorForLetter={colorForLetter} />)}
-        <CurrentEntry word={currentEntry}/>
-        { _.range(MAX_ATTEMPTS - attempts.length - 1).map(() => <EmptyRow />)}
+        { !gameOver && <CurrentEntry word={currentEntry}/> }
+        { _.range(0, MAX_ATTEMPTS - attempts.length - 1, 1).map(() => <EmptyRow />)}
       </div>
       <hr/>
-      <Keyboard
-        onLetterInput={handleLetterInput}
-        onBackspace={handleBackspace}
-        onEnter={handleSubmitWord}
-        colorForKey={getColorsForKeyboard()}
-      />
+      { gameOver ?
+        <GameOver/> :
+        <Keyboard
+          onLetterInput={handleLetterInput}
+          onBackspace={handleBackspace}
+          onEnter={handleSubmitWord}
+          colorForKey={getColorsForKeyboard()}
+        />
+      }
     </div>
   );
 }
