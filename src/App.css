@@ -1,10 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
+
+:root {
+  --old-gold: #d5b942ff;
+  --salmon: #ef8275ff;
+  --black-coral: #5e6572ff;
+  --black: #000000ff;
+  --caribbean-green: #06d6a0ff;
+  --french-raspberry: #c33149ff;
+}
+body {
+  /* background-color: var(--salmon); */
+  background-color: var(--french-raspberry);
+}
+hr {
+  width: 100%;
+}
 .main-layout {
   display: flex;
   flex-direction: column;
   align-items: center;
-  align-content: center;
+  justify-content: space-around;
   max-width: 500px;
   margin: auto;
+  /* font-family: 'Merriweather', serif; */
+  font-family: 'Libre Baskerville', serif;
+  height: 95vh;
 }
 
 .title {
@@ -34,9 +55,23 @@
   display: flex;
   height: 60px;
   width: 60px;
-  border: 1px solid black;
+  border: 2px solid black;
   margin: 3px;
-  border-radius: 30px;
+  border-radius: 32px;
+  font-size: 2em;
+}
+
+.yellow-background {
+  background-color: var(--old-gold);
+}
+
+.green-background {
+  /* background-color: var(--mountain-meadow); */
+  background-color: var(--caribbean-green);
+}
+
+.grey-background {
+  background-color: var(--black-coral);
 }
 
 .keyboard {
@@ -55,6 +90,8 @@
   justify-content: center;
   height: 30px;
   width: 30px;
-  border: 1px solid black;
-  margin: 1px;
+  border: 2px solid black;
+  border-radius: 16px;
+  margin: 3px;
+  font-size: 1.4em;
 }

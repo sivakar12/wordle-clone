@@ -71,11 +71,13 @@ function App() {
   return (
     <div className='main-layout'>
       <div className='title'>WORDLE</div>
+      <hr/>
       <div className='letter-grid'>
         {attempts.map(word => <AttemptedRow word={word} colorForLetter={colorForLetter} />)}
         <CurrentEntry word={currentEntry}/>
+        { _.range(MAX_ATTEMPTS - attempts.length - 1).map(() => <EmptyRow />)}
       </div>
-      { _.range(MAX_ATTEMPTS - attempts.length - 1).map(() => <EmptyRow />)}
+      <hr/>
       <Keyboard
         onLetterInput={handleLetterInput}
         onBackspace={handleBackspace}

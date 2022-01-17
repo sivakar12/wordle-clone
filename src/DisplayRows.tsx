@@ -12,8 +12,12 @@ export const AttemptedRow = (props: AttemptRowProps) => {
           {
             props.word.split('').map((letter, index) => {
               const color = props.colorForLetter(letter, index);
+              let className = "letter-grid-item";
+              if (color) {
+                className += ` ${color}-background`;
+              }
               return (
-                <div className='letter-grid-item' style={{backgroundColor: color}}>
+                <div className={className}>
                   {letter}
                 </div>
               );
