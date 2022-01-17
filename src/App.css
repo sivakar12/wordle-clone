@@ -34,6 +34,9 @@
   display: flex;
   height: 60px;
   width: 60px;
+  border: 1px solid black;
+  margin: 3px;
+  border-radius: 30px;
 }
 
 .keyboard {
@@ -52,4 +55,6 @@
   justify-content: center;
   height: 30px;
   width: 30px;
+  border: 1px solid black;
+  margin: 1px;
 }

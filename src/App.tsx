@@ -1,11 +1,13 @@
 import React from 'react';
+import _ from 'lodash'
 import Keyboard from './Keyboard';
 import './App.css'
+import { AttemptedRow, CurrentEntry, EmptyRow } from './DisplayRows';
 
 
 type Attempts = string[];
 
-const WORD_LENGTH = 5;
+export const WORD_LENGTH = 5;
 const MAX_ATTEMPTS = 6;
 
 
@@ -41,22 +43,6 @@ function App() {
     })
     return colorForLetter;
   }
-  function displayWord(word: string, showColors: boolean) {
-    return (
-      <div className='letter-grid-row'>
-        {
-          word.split('').map((letter, index) => {
-            const color = showColors ? colorForLetter(letter, index) : '';
-            return (
-              <div className='letter-grid-item' style={{backgroundColor: color}}>
-                {letter}
-              </div>
-            );
-          }) 
-        }
-      </div>
-    );
-  }
 
   const handleLetterInput = (letter: string) => {
     if (currentEntry.length === WORD_LENGTH) {
@@ -86,9 +72,10 @@ function App() {
     <div className='main-layout'>
       <div className='title'>WORDLE</div>
       <div className='letter-grid'>
-        {attempts.map(attempt => displayWord(attempt, true))}
-        {displayWord(currentEntry, false)}
+        {attempts.map(word => <AttemptedRow word={word} colorForLetter={colorForLetter} />)}
+        <CurrentEntry word={currentEntry}/>
       </div>
+      { _.range(MAX_ATTEMPTS - attempts.length - 1).map(() => <EmptyRow />)}
       <Keyboard
         onLetterInput={handleLetterInput}
         onBackspace={handleBackspace}
