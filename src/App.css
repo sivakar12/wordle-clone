@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
 
 :root {
-  --green: #06FF00;
-  --yellow: #FFE400;
-  --grey: #777777;
-  --background: #FF1700;
+  --green: #59981A;
+  --yellow: #ecf87f;
+  --grey: #333333;
+  --background: #3D550C
+
+  ;
 }
 body {
   background-color: var(--background);
@@ -96,6 +98,6 @@ hr {
 
 .game-over-restart {
   text-decoration: underline;
-  color: blue;
+  color: white;
   font-size: 0.7em;
 }
