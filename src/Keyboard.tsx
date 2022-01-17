@@ -27,13 +27,13 @@ export default function Keyboard(props: KeyboardProps) {
             {rows.map((row, rowIndex) => (
                 <div className="keyboard-row" key={rowIndex}>
                     {row.map((text, letterIndex) => (
-                        <button
+                        <div
                             className="keyboard-button"
                             key={letterIndex}
                             onClick={() => handleButton(text)}
                         >
                             {text}
-                        </button>
+                        </div>
                     ))}
                 </div>
             ))}

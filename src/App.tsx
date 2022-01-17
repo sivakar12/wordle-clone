@@ -1,6 +1,6 @@
 import React from 'react';
 import Keyboard from './Keyboard';
-
+import './App.css'
 type LetterStatus = 
   'guessedWrongPosition' | 'guessedRightPosition' | 'guessedWrong' | 'notGuessed';
 
@@ -35,14 +35,14 @@ const MAX_ATTEMPTS = 6;
 
 function displayWord(word: string, letterStatus: LetterStatusMap) {
   return (
-    <div>
+    <div className='letter-grid-row'>
       {
         word.split('').map(letter => {
           const color = colorForLetter(letterStatus[letter]);
           return (
-            <span style={{color: color}}>
+            <div className='letter-grid-item' style={{color: color}}>
               {letter}
-            </span>
+            </div>
           );
         }) 
       }
@@ -57,16 +57,16 @@ function App() {
   const [attempts, setAttempts] = React.useState<Attempts>(['TOTAL', 'WATER', 'INDIA']);
 
   return (
-    <div>
-      <div>WORDLE</div>
-      <div>
+    <div className='main-layout'>
+      <div className='title'>WORDLE</div>
+      <div className='letter-grid'>
         {attempts.map(attempt => displayWord(attempt, initialLetterStatus))}
         {displayWord(currentEntry, initialLetterStatus)}
       </div>
       <Keyboard
         onLetterInput={letter => {setCurrentEntry(currentEntry + letter);}}
         onBackspace={() => {setCurrentEntry(currentEntry.slice(0, -1));}}
-        onEnter={() => {attempts.push(currentEntry); setCurrentEntry('');}}
+        onEnter={() => {setAttempts([...attempts, currentEntry]); setCurrentEntry('');}}
       />
     </div>
   );
