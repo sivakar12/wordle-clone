@@ -1,16 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
 
 :root {
-  --old-gold: #d5b942ff;
-  --salmon: #ef8275ff;
-  --black-coral: #5e6572ff;
-  --black: #000000ff;
-  --caribbean-green: #06d6a0ff;
-  --french-raspberry: #c33149ff;
+  --green: #06FF00;
+  --yellow: #FFE400;
+  --grey: #777777;
+  --background: #FF1700;
 }
 body {
-  background-color: var(--salmon);
-  /* background-color: var(--french-raspberry); */
+  background-color: var(--background);
   user-select: none;
 }
 hr {
@@ -23,9 +20,7 @@ hr {
   justify-content: flex-start;
   max-width: 500px;
   margin: auto;
-  /* font-family: 'Merriweather', serif; */
   font-family: 'Libre Baskerville', serif;
-  /* height: 95vh; */
 }
 
 .title {
@@ -62,16 +57,15 @@ hr {
 }
 
 .yellow-background {
-  background-color: var(--old-gold);
+  background-color: var(--yellow);
 }
 
 .green-background {
-  /* background-color: var(--mountain-meadow); */
-  background-color: var(--caribbean-green);
+  background-color: var(--green);
 }
 
 .grey-background {
-  background-color: var(--black-coral);
+  background-color: var(--grey);
 }
 
 .keyboard {
