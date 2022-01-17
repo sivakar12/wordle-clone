@@ -3,21 +3,27 @@ import _ from 'lodash'
 import Keyboard from './Keyboard';
 import './App.css'
 import { AttemptedRow, CurrentEntry, EmptyRow } from './DisplayRows';
-
+import words from './words';
 
 type Attempts = string[];
 
 export const WORD_LENGTH = 5;
 const MAX_ATTEMPTS = 6;
 
-const words = [
-  'APPLE', 'MANGO', 'WATER', 'LIVER', 'RIVER',
-  'DRONE', 'KITES', 'ROUND', 'WOMAN'
-]
+// const words = [
+//   'APPLE', 'MANGO', 'WATER', 'LIVER', 'RIVER',
+//   'DRONE', 'KITES', 'ROUND', 'WOMAN'
+// ]
 
 function getRandomWord() {
   const index = Math.floor(Math.random() * words.length);
   return words[index]
+}
+
+function validWord(wordToCheck: string) {
+  // TODO: Must find a better tree based search 
+  // when there are more words
+  return words.some(w => w === wordToCheck)
 }
 
 function App() {
@@ -70,7 +76,9 @@ function App() {
     if (currentEntry.length !== WORD_LENGTH) {
       return;
     }
-    setAttempts([...attempts, currentEntry]);
+    if (validWord(currentEntry)) {
+      setAttempts([...attempts, currentEntry]);
+    }
     setCurrentEntry('')
     if (currentEntry === word || attempts.length === MAX_ATTEMPTS - 1) {
       setGameOver(true);
