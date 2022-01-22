@@ -4,8 +4,8 @@
   --green: #59981A;
   --yellow: #ecf87f;
   --grey: #333333;
-  --background: #3D550C
-
+  --background: #3D550Cee;
+  --text-and-lines: #222222;
   ;
 }
 body {
@@ -23,6 +23,7 @@ hr {
   max-width: 500px;
   margin: auto;
   font-family: 'Libre Baskerville', serif;
+  color: var(--text-and-lines);
 }
 
 .title {
@@ -52,7 +53,7 @@ hr {
   display: flex;
   height: 60px;
   width: 60px;
-  border: 2px solid black;
+  border: 2px solid var(--text-and-lines);
   margin: 3px;
   border-radius: 32px;
   font-size: 2em;
@@ -86,7 +87,7 @@ hr {
   justify-content: center;
   height: 30px;
   width: 30px;
-  border: 2px solid black;
+  border: 2px solid var(--text-and-lines);
   margin: 3px;
   font-size: 1.4em;
 }
@@ -98,6 +99,5 @@ hr {
 
 .game-over-restart {
   text-decoration: underline;
-  color: white;
   font-size: 0.7em;
 }
