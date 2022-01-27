@@ -107,13 +107,13 @@ function App() {
   return (
     <div className='main-layout'>
       <div className='title'>WORDLE</div>
-      {/* <hr/> */}
+      <hr/>
       <div className='letter-grid'>
         {attempts.map(word => <AttemptedRow word={word} colorForLetter={colorForLetter} />)}
         { (attempts.length < MAX_ATTEMPTS) && <CurrentEntry word={currentEntry}/> }
         { _.range(0, MAX_ATTEMPTS - attempts.length - 1, 1).map(() => <EmptyRow />)}
       </div>
-      {/* <hr/> */}
+      <hr/>
       { gameOver ?
         <GameOver/> :
         <Keyboard
