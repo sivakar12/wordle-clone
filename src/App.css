@@ -59,6 +59,14 @@ hr {
   font-size: 2em;
 }
 
+@media screen and (max-width: 400px) {
+  .letter-grid-item {
+    height: 50px;
+    width: 50px;
+    font-size: 1.8em;
+  }
+}
+
 .yellow-background {
   background-color: var(--yellow);
 }
@@ -90,6 +98,14 @@ hr {
   border: 2px solid var(--text-and-lines);
   margin: 3px;
   font-size: 1.4em;
+}
+
+@media screen and (max-width: 400px) {
+  .keyboard-button {
+    height: 25px;
+    width: 25px;
+    font-size: 1.2em;
+  }
 }
 
 .game-over {
