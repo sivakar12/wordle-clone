@@ -19,11 +19,12 @@ hr {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   max-width: 500px;
   margin: auto;
   font-family: 'Libre Baskerville', serif;
   color: var(--text-and-lines);
+  height: 85vh;
 }
 
 .title {
